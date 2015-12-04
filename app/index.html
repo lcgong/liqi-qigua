@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>八卦推演器(李老师专属版)</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <!-- <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <meta name="x5-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="x5-page-mode" content="app"/>
+
+    <link rel="stylesheet" href="./bower_components/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./bower_components/animate.css/animate.min.css">
+    <link rel="stylesheet" href="main.css?13"/>
+
+  </head>
+
+  <body ng-app="mainapp"  ng-controller="BaguaCtrl">
+
+  <div class="header">
+    <h1><img class="avatar" src="images/user-icon-256.png"> <span>李老师推演器</span></h1>
+  </div>
+  
+  <div class="bagua-input-panel" >
+    <div style="display:inline-block">
+      <table>
+        <tbody>
+          <tr>
+            <td><span class="" ng-hide="inputs[0]==''" ng-bind="inputs[0]"></span></td>
+            <td><span class="" ng-hide="inputs[1]==''" ng-bind="inputs[1]"></span></td>
+            <td><span class="" ng-hide="inputs[2]==''" ng-bind="inputs[2]"></span></td>
+            <td><span class="" ng-hide="inputs[3]==''" ng-bind="inputs[3]"></span></td>
+          </tr>
+        </tbody>
+      </table>      
+    </div>
+  </div>
+
+  <div  style=" width:100%; height:17rem; text-align:center;">
+    <div class="guaxiang-grid" >
+      <div class="guaxiang-row" >
+        <div class="pull-left">
+          <div class="guaxiang gua-row1" ng-show="inputIndex == 4" >
+            <div class="tip-top" >主卦</div>
+            <div class="gua" ng-bind="zhugua.char"></div>
+            <div class="tip-bottom" ng-bind="zhugua.longname"></div>          
+          </div>
+        </div>
+        <div class="pull-right">
+          <div class="guaxiang gua-row1" ng-show="inputIndex == 4">
+            <div class="tip-top" >变卦</div>
+            <div class="gua" ng-bind="biangua.char"></div>
+            <div class="tip-bottom" ng-bind="biangua.longname"></div>            
+          </div>
+        </div>
+      </div>
+      <div class="guaxiang-row" >
+        <div class="guaxiang gua-row2" ng-show="inputIndex == 4">
+            <div class="tip-top" >互卦</div>
+            <div class="gua" ng-bind="hugua.char"></div>
+            <div class="tip-bottom" ng-bind="hugua.longname"></div>                         
+        </div>
+      </div>
+      <div class="guaxiang-row" >
+        <div class="guaxiang pull-left gua-row3" ng-show="inputIndex == 4">
+          <div class="tip-top" >错卦</div>
+          <div class="gua" ng-bind="cuogua.char"></div>
+          <div class="tip-bottom" ng-bind="cuogua.longname"></div>                   
+        </div>
+        <div class="guaxiang pull-right gua-row3" ng-show="inputIndex == 4">
+          <div class="tip-top" >综卦</div>
+          <div class="gua" ng-bind="zonggua.char"></div>
+          <div class="tip-bottom" ng-bind="zonggua.longname"></div>                 
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="bagua-ctrl-panel" >
+  </div>
+  <div class="bagua-ctrl-panel" >
+    <div style="display:inline-block" >
+      <table>
+        <tbody>
+          <tr>
+            <td ng-repeat="gram in btnLabels.slice(0,3) track by $index">
+              <button class="btn btn-primary" ng-click="enter(gram)" >{{gram}}</button>
+            </td>
+            <td >
+              <button class="btn btn-primary" ng-click="enter('0')" >0</button>
+            </td>
+          </tr>
+          <tr>
+            <td ng-repeat="gram in btnLabels.slice(3,6) track by $index">
+              <button class="bagua btn btn-primary" ng-click="enter(gram)" >{{gram}}</button>
+            </td> 
+            <td>
+              <button class="btn btn-success" ng-click="clear()" >清</button>
+            </td>
+          </tr>
+          <tr>
+            <td ng-repeat="gram in btnLabels.slice(6,9) track by $index">
+              <button class="btn btn-primary" ng-click="enter(gram)" >{{gram}}</button>
+            </td> 
+            <td>
+              <button class="btn btn-danger" ng-click="go()" >起</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>      
+    </div>
+  </div>
+  <script src="./bower_components/angular/angular.min.js"></script>
+  <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="./bower_components/angular-aria/angular-aria.min.js"></script>
+  <script src="./main.js"></script>
+    <script type="text/javascript">
+    (function(){
+      var ua = navigator.userAgent.toLowerCase();
+      if(ua.match(/micromessenger/i) == 'micromessenger') {
+          angular.element(document.getElementsByTagName('html')).addClass('ua-weixin')
+      }
+      if(ua.match(/android/i) == 'android') {
+          angular.element(document.getElementsByTagName('html')).addClass('ua-android')
+      }      
+    })();
+    </script>  
+  </body>
+</html>
